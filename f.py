@@ -1,1 +1,2 @@
 print("Mayur")
+print("Nimay")
