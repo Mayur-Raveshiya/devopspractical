@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Management System</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f4f4;
+        margin:40px;
+    }
+
+    .container{
+        width:700px;
+        margin:auto;
+        background:white;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,.2);
+    }
+
+    h2{
+        text-align:center;
+        color:#333;
+    }
+
+    label{
+        font-weight:bold;
+    }
+
+    input,select{
+        width:100%;
+        padding:10px;
+        margin-top:5px;
+        margin-bottom:15px;
+    }
+
+    button{
+        background:#007bff;
+        color:white;
+        border:none;
+        padding:10px 20px;
+        cursor:pointer;
+        border-radius:5px;
+    }
+
+    button:hover{
+        background:#0056b3;
+    }
+
+    table{
+        width:100%;
+        margin-top:20px;
+        border-collapse:collapse;
+    }
+
+    table,th,td{
+        border:1px solid #ccc;
+    }
+
+    th{
+        background:#007bff;
+        color:white;
+    }
+
+    th,td{
+        padding:10px;
+        text-align:center;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Book Management System</h2>
+
+<label>Book Name</label>
+<input type="text" id="book">
+
+<label>Student Name</label>
+<input type="text" id="student">
+
+<label>Issue Date</label>
+<input type="date" id="issueDate">
+
+<label>Expiry Date</label>
+<input type="date" id="expiryDate">
+
+<button onclick="issueBook()">Issue Book</button>
+
+<table id="bookTable">
+
+<tr>
+<th>Book</th>
+<th>Student</th>
+<th>Issue Date</th>
+<th>Expiry Date</th>
+<th>Status</th>
+</tr>
+
+</table>
+
+</div>
+
+<script>
+
+function issueBook(){
+
+let book=document.getElementById("book").value;
+let student=document.getElementById("student").value;
+let issue=document.getElementById("issueDate").value;
+let expiry=document.getElementById("expiryDate").value;
+
+if(book=="" || student=="" || issue=="" || expiry==""){
+    alert("Please fill all fields.");
+    return;
+}
+
+let today=new Date();
+let due=new Date(expiry);
+
+let status="Issued";
+
+if(today>due){
+    status="Expired";
+}
+
+let table=document.getElementById("bookTable");
+
+let row=table.insertRow();
+
+row.insertCell(0).innerHTML=book;
+row.insertCell(1).innerHTML=student;
+row.insertCell(2).innerHTML=issue;
+row.insertCell(3).innerHTML=expiry;
+row.insertCell(4).innerHTML=status;
+
+document.getElementById("book").value="";
+document.getElementById("student").value="";
+document.getElementById("issueDate").value="";
+document.getElementById("expiryDate").value="";
+
+}
+
+</script>
+
+</body>
+</html>
